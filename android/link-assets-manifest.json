@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Gantari-Black.ttf",
+      "sha1": "d950edf091225a5cd4520fa85e901785aa1ff81a"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-BlackItalic.ttf",
+      "sha1": "359f3b7aa842793cbe918d1400b833057d6ab161"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Bold.ttf",
+      "sha1": "67733134883430e13b2cc514b5fea3395fca675b"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-BoldItalic.ttf",
+      "sha1": "a1fe0b3151677f007a9c11a03c076eb0d436c341"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-ExtraBold.ttf",
+      "sha1": "7d8b9c573a53e943d2c5dc79bd8210310d2aa7c4"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-ExtraBoldItalic.ttf",
+      "sha1": "606a5397cf548241439f30a3643f9a4d99834524"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-ExtraLight.ttf",
+      "sha1": "281f8d47313dc17e795c3b64d5ae8695671d7200"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-ExtraLightItalic.ttf",
+      "sha1": "b8f219365c421158192d6e90df4473c5a0ed4965"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Italic.ttf",
+      "sha1": "1274d48cb00e62b781fcfe4e9ddb0977be21332a"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Light.ttf",
+      "sha1": "49ffa8277d26cc80c26b003fdebc1489613c1e8b"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-LightItalic.ttf",
+      "sha1": "81af2d2ffec14b6245df975a4fd59d8573bcdaf3"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Medium.ttf",
+      "sha1": "cffbe1bd8bd4db65885f9c7a6b14516d9ec1ce11"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-MediumItalic.ttf",
+      "sha1": "60981c1232dff247e3d9c42443032472e85375fd"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Regular.ttf",
+      "sha1": "8c1d24aaa516f68dc5d2d895780df40ba753b61c"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-SemiBold.ttf",
+      "sha1": "e1ca23ecb103d7e7101a6ee8d74373291a56cc15"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-SemiBoldItalic.ttf",
+      "sha1": "de829890ac094ee8aadddaa14eea430264e385eb"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-Thin.ttf",
+      "sha1": "c05d98cf47905b3323c05d63f48ae09fad06985f"
+    },
+    {
+      "path": "src/assets/fonts/Gantari-ThinItalic.ttf",
+      "sha1": "63a7c58e69185ff718b410c9e42aa216f595eceb"
+    }
+  ]
+}

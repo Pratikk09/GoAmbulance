@@ -1,0 +1,20 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@constant/*": ["./src/constant/*"],
+      "@container/*": ["./src/container/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@navigation/*": ["./src/navigation/*"],
+      "@rtkServices/*": ["./src/rtkServices/*"],
+      "@socket/*": ["./src/socket/*"],
+      "@store/*": ["./src/store/*"],
+      "@translation/*": ["./src/translation/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods"]
+}

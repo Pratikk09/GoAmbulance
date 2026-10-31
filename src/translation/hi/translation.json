@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "DonHaveAnAccount": "क्या आपके पास खाता नहीं है? ",
+    "Alreadyhaveanaccount": "क्या आपके पास पहले से खाता है? ",
+    "SignUp": "साइन अप करें।",
+    "ForgotYourPassword": "क्या आपने अपना पासवर्ड भूल गए?",
+    "SignIn": "साइन इन करें",
+    "Password": "पासवर्ड",
+    "EnterYourPassword": "अपना पासवर्ड दर्ज करें",
+    "EmailAddress": "ईमेल पता",
+    "EnterYourEmailAddress": "अपना ईमेल पता दर्ज करें...",
+    "Passwordisrequired": "पासवर्ड आवश्यक है",
+    "Emailfieldisrequired": "ईमेल फ़ील्ड आवश्यक है",
+    "InvalidEmailFormat": "अमान्य ईमेल प्रारूप",
+    "Verify": "सत्यापित करें",
+    "ReSendOTP": "अब ओटीपी फिर से भेजें",
+    "SignUpForFree": "मुफ्त में साइन अप करें",
+    "FullName": "पूरा नाम",
+    "Enteryourfullname": "अपना पूरा नाम दर्ज करें",
+    "NameisRequired": "नाम आवश्यक है",
+    "Pleaseselectgender": "कृपया लिंग चुनें",
+    "Selectgender": "लिंग चुनें",
+    "Gender": "लिंग",
+    "ForgotPassword": "पासवर्ड भूल गए",
+    "ResetPassword": "पासवर्ड रीसेट करें"
+  },
+  "main": {
+    "Hi": "नमस्ते"
+  }
+}

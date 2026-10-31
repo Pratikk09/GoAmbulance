@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "DonHaveAnAccount": "Don’t have an account? ",
+    "Alreadyhaveanaccount": "Already have an account? ",
+    "SignUp": "Sign Up.",
+    "ForgotYourPassword": "Forgot your password?",
+    "SignIn": "Sign In",
+    "Password": "Password",
+    "EnterYourPassword": "Enter Your Password",
+    "EmailAddress": "Email Address",
+    "EnterYourEmailAddress": "Enter your email address...",
+    "Passwordisrequired": "Password is required",
+    "Emailfieldisrequired": "Email field is required",
+    "InvalidEmailFormat": "Invalid Email Format",
+    "Verify": "Verify",
+    "ReSendOTP": "Re-Send the OTP Now",
+    "SignUpForFree": "Sign Up For Free",
+    "FullName": "Full name",
+    "Enteryourfullname": "Enter your full name",
+    "NameisRequired": "Name is required",
+    "Pleaseselectgender": "Please select gender",
+    "Selectgender": "Select gender",
+    "Gender": "Gender",
+    "ForgotPassword": "Forgot Password",
+    "ResetPassword": "Reset Password"
+  },
+  "main": {
+    "Hi": "Hi"
+  }
+}
