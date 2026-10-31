@@ -15,6 +15,7 @@ export const DRIVER_STATUS_URL = 'ambulance/driver/me/status';
 export const DRIVER_LOCATION_URL = 'ambulance/driver/me/location';
 export const DRIVER_PUSH_TOKEN_URL = 'ambulance/driver/me/push-token';
 export const DRIVER_OFFER_URL = 'ambulance/driver/offer';
+export const DRIVER_TRIPS_URL = 'ambulance/driver/trips';
 export const driverCaseUrl = (caseId: string, action: string) =>
   `ambulance/driver/cases/${caseId}/${action}`;
 

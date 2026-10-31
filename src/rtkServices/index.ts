@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {BASE_URL, LOGIN_URL} from './endpoints';
-import {getToken} from '@utils/general';
+import {getToken, showToast} from '@utils/general';
 import {userLogout} from '@store/UserManager';
 import {navigateAndSimpleReset} from '@navigation/utils';
 
@@ -10,6 +10,8 @@ const baseQuery = fetchBaseQuery({
     const {accessToken: token} = await getToken();
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
+    } else if (__DEV__) {
+      console.log('API request sent without a token (not logged in yet?)');
     }
     return headers;
   },
@@ -19,6 +21,11 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
   let result: any = await baseQuery(args, api, extraOptions);
   if (result.error) {
     const {status} = result.error;
+    // Validation errors (400) send `message` as an array of strings.
+    const message = result.error.data?.message;
+    if (Array.isArray(message)) {
+      result.error.data.message = message[0];
+    }
     switch (status) {
       case 400:
         console.error(
@@ -50,6 +57,12 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
         console.error(
           `Forbidden (403): ${result.error.data?.message || 'Access denied.'}`,
         );
+        // The account has no active ambulance: it can't use the driver app.
+        if (api.getState().user?.user) {
+          showToast('Your account is not linked to an ambulance. Please contact admin.');
+          api.dispatch(userLogout());
+          navigateAndSimpleReset('AuthNavigator', undefined);
+        }
         break;
       case 404:
         console.error(
@@ -76,13 +89,23 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
       default:
     }
   }
+  // The backend wraps payloads as {success, message, data}; endpoints only need `data`.
+  const body = result.data;
+  if (
+    body &&
+    typeof body === 'object' &&
+    'data' in body &&
+    ('success' in body || 'message' in body || 'statusCode' in body)
+  ) {
+    result.data = body.data;
+  }
   return result;
 };
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: [],
+  tagTypes: ['DriverMe', 'Trips'],
   endpoints: builder => ({}),
   refetchOnFocus: true,
   refetchOnReconnect: true,

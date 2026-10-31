@@ -8,6 +8,7 @@ import {api, apiMiddleware, apiReducer} from '@rtkServices/index';
 import {userReducer} from './UserManager';
 import { themeReducer } from './ThemeManger';
 import {jobOfferReducer} from './JobOfferManager';
+import {driverReducer} from './DriverManager';
 
 const logger = createLogger({
   duration: true,
@@ -27,12 +28,13 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   // Not in the persist whitelist: an offer must never survive an app restart.
   jobOffer: jobOfferReducer,
+  driver: driverReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user' , 'theme'],
+  whitelist: ['user' , 'theme', 'driver'],
   blacklist: [],
 };
 
