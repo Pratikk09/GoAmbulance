@@ -32,6 +32,10 @@ interface TextInputWithLabelsProps extends TextInputProps {
   multiline?: boolean;
   numberOfLines?: number;
   textAlignVertical?: 'auto' | 'top' | 'bottom' | 'center';
+  // Replace the default eye icons shown for the password toggle.
+  eyeHiddenIcon?: React.ReactNode;
+  eyeShownIcon?: React.ReactNode;
+  eyeStyle?: any;
 }
 
 const TextInputWithLabels = forwardRef(
@@ -54,6 +58,10 @@ const TextInputWithLabels = forwardRef(
       maxLengthTitle,
       labelTextStyle,
       btnStyle,
+      eyeHiddenIcon,
+      eyeShownIcon,
+      eyeStyle,
+      style,
       ...rest
     } = props;
 
@@ -92,8 +100,8 @@ const TextInputWithLabels = forwardRef(
             autoCapitalize="none"
             secureTextEntry={isSecure === true}
             placeholderTextColor={placeholderTextColor || 'gray'}
-            style={[styles.inputStyle, rest.style]}
             {...rest}
+            style={[styles.inputStyle, style]}
           />
 
           {crossTrue && value && value.length > 0 && (
@@ -106,14 +114,12 @@ const TextInputWithLabels = forwardRef(
 
           {isSecure !== undefined && (
             <TouchableOpacity
-              style={styles.eyeStyle}
+              style={[styles.eyeStyle, eyeStyle]}
               activeOpacity={0.5}
               onPress={props.onPress}>
-              {isSecure === true ? (
-                <EyeHideIcon1 color={'gray'} />
-              ) : (
-                <EyeShowIcon fill={'gray'} />
-              )}
+              {isSecure === true
+                ? eyeHiddenIcon ?? <EyeHideIcon1 color={'gray'} />
+                : eyeShownIcon ?? <EyeShowIcon fill={'gray'} />}
             </TouchableOpacity>
           )}
         </View>
