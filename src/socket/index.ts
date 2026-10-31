@@ -6,19 +6,24 @@ export let socket: Socket | null = null;
 
 async function socketService() {
   let {accessToken: token} = await getToken();
+  socketDisconnect();
 
+  // The server joins this socket to `user:<userId>` from the token.
   socket = io(SOCKET_URL, {
     path: '/socket.io',
-    forceNew: false,
+    transports: ['websocket'],
+    forceNew: true,
     reconnectionAttempts: Infinity,
     timeout: 20000,
-    extraHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
+    auth: {token},
   });
 
   socket.on('connect', () => {
     console.log('- socket connected -');
+  });
+
+  socket.on('connect_error', error => {
+    console.log(`socket connect error - ${error.message}`);
   });
 
   socket.on('disconnect', reason => {
@@ -26,8 +31,8 @@ async function socketService() {
   });
 }
 
-function socketEmit(evt: string, data?: any) {
-  socket?.emit(evt, data);
+function socketEmit(evt: string, data?: any, ack?: (res: any) => void) {
+  socket?.emit(evt, data, ack);
 }
 
 function socketListen(event: string, cb: any) {
@@ -35,7 +40,9 @@ function socketListen(event: string, cb: any) {
 }
 
 function socketDisconnect() {
+  socket?.removeAllListeners();
   socket?.disconnect();
+  socket = null;
 }
 
 export {socketEmit, socketDisconnect, socketListen, socketService};

@@ -1,4 +1,4 @@
 interface ILoginFormReq {
-  driverId: string;
+  email: string;
   password: string;
 }

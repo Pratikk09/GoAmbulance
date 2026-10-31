@@ -1,0 +1,12 @@
+<svg width="44" height="56" viewBox="0 0 44 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Pin / Destination" clip-path="url(#clip0_0_18)">
+<path id="Vector" d="M22 54C22 54 4 36 4 22C4 17.2261 5.89642 12.6477 9.27208 9.27208C12.6477 5.89642 17.2261 4 22 4C26.7739 4 31.3523 5.89642 34.7279 9.27208C38.1036 12.6477 40 17.2261 40 22C40 36 22 54 22 54Z" fill="#1E63E0" stroke-width="3" stroke="white"/>
+<path id="Vector_2" d="M22 33C28.0751 33 33 28.0751 33 22C33 15.9249 28.0751 11 22 11C15.9249 11 11 15.9249 11 22C11 28.0751 15.9249 33 22 33Z" fill="white"/>
+<path id="Vector_3" d="M20 14H24V19H29V23H24V28H20V23H15V19H20V14Z" fill="#1E63E0"/>
+</g>
+<defs>
+<clipPath id="clip0_0_18">
+<rect width="44" height="56" fill="white"/>
+</clipPath>
+</defs>
+</svg>

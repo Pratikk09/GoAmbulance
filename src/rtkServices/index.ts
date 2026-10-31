@@ -1,6 +1,8 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {BASE_URL} from './endpoints';
+import {BASE_URL, LOGIN_URL} from './endpoints';
 import {getToken} from '@utils/general';
+import {userLogout} from '@store/UserManager';
+import {navigateAndSimpleReset} from '@navigation/utils';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -31,6 +33,11 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
             result.error.data?.message || 'Authentication required.'
           }`,
         );
+        // An expired session sends the driver back to login (a wrong password on login doesn't).
+        if ((typeof args === 'string' ? args : args?.url) !== LOGIN_URL) {
+          api.dispatch(userLogout());
+          navigateAndSimpleReset('AuthNavigator', undefined);
+        }
         break;
       case 402:
         console.error(

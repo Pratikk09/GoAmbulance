@@ -2,10 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import Toast from 'react-native-simple-toast';
 
-export const setToken = (accessToken: string, refreshToken: string) => {
-  AsyncStorage.setItem('accessToken', accessToken);
-  AsyncStorage.setItem('refreshToken', refreshToken);
-};
+export const setToken = (accessToken: string, refreshToken: string) =>
+  Promise.all([
+    AsyncStorage.setItem('accessToken', accessToken),
+    AsyncStorage.setItem('refreshToken', refreshToken),
+  ]);
 
 export const getToken = async () => {
   let [accessToken, refreshToken] = await Promise.all([

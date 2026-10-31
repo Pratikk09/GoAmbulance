@@ -20,6 +20,11 @@ import IconEyeOff from '@assets/svg/login/IconEyeOff.svg';
 import IconArrow from '@assets/svg/login/IconArrow.svg';
 import {fonts} from '@constant/fontfamily';
 import {LoginScreenProps} from '@navigation/screens';
+import {useLoginMutation} from '@rtkServices/AuthService';
+import {driverApi} from '@rtkServices/DriverService';
+import {useAppDispatch} from '@store/index';
+import {updateUser, userLogout} from '@store/UserManager';
+import {setToken, showToast} from '@utils/general';
 
 // Values from the Figma "01 Login" frame (node 41:3), which is 390 wide.
 const DESIGN_WIDTH = 390;
@@ -54,18 +59,43 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [isSecure, setIsSecure] = useState(true);
   const onEyePress = () => setIsSecure(prev => !prev);
 
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const [isLoading, setIsLoading] = useState(false);
+
   const {control, handleSubmit} = useForm<ILoginFormReq>({
     defaultValues: {
-      driverId: '',
+      email: '',
       password: '',
     },
   });
 
-  const handleLoginSubmit = (data: ILoginFormReq) => {
-    const _payload = {
-      driverId: data?.driverId,
-      password: data?.password,
-    };
+  const handleLoginSubmit = async (data: ILoginFormReq) => {
+    setIsLoading(true);
+    try {
+      const res = await login({
+        email: data.email.trim(),
+        password: data.password,
+      }).unwrap();
+      if (!res.accessToken) {
+        throw {data: {message: 'Login succeeded but the server sent no token.'}};
+      }
+      await setToken(res.accessToken, res.refreshToken);
+      // Only users linked to an active ambulance may use the driver APIs (403 otherwise).
+      await dispatch(
+        driverApi.endpoints.getDriverMe.initiate(undefined, {
+          forceRefetch: true,
+          subscribe: false,
+        }),
+      ).unwrap();
+      dispatch(updateUser(res.user));
+      navigation.navigate('PermissionScreen');
+    } catch (error: any) {
+      dispatch(userLogout());
+      showToast(error?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -158,15 +188,18 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
           <Controller
             control={control}
             rules={{
-              required: 'Driver ID or mobile number is required',
+              required: 'Email is required',
             }}
-            name={'driverId'}
+            name={'email'}
             render={({field: {onChange, value}, fieldState: {error}}) => (
               <TextInputWithLabels
                 value={value}
                 isLabelRequired={false}
-                placeholder="Driver ID / Mobile Number"
+                // The design says "Driver ID / Mobile Number"; the API logs in with email.
+                placeholder="Email"
                 placeholderTextColor={LOGIN_COLORS.body}
+                keyboardType="email-address"
+                autoComplete="email"
                 onChangeText={onChange}
                 error={error?.message}
                 icon={<IconPhone width={20} height={20} />}
@@ -220,7 +253,8 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
             btnStyle={styles.loginButton}
             textStyle={styles.loginButtonText}
             leftIcon={<IconArrow width={20} height={20} />}
-            isLoading={false}
+            isLoading={isLoading}
+            disabled={isLoading}
           />
         </View>
       </KeyboardAwareScrollView>

@@ -7,3 +7,14 @@ interface SignupRes {
   message: string;
   token: string;
 }
+
+interface LoginBody {
+  email: string;
+  password: string;
+}
+interface LoginRes {
+  accessToken: string;
+  refreshToken: string;
+  user: any;
+  clinics: any[];
+}

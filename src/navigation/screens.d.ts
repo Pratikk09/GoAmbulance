@@ -22,11 +22,16 @@ export type MainNavigatorProps = NativeStackScreenProps<
 
 export type AuthStackParamList = {
   LoginScreen: undefined;
+  PermissionScreen: undefined;
 };
 
 export type LoginScreenProps = NativeStackScreenProps<
   AuthStackParamList,
   'LoginScreen'
+>;
+export type PermissionScreenProps = NativeStackScreenProps<
+  AuthStackParamList,
+  'PermissionScreen'
 >;
 
 export type MainStackParamList = {

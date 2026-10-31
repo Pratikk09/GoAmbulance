@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {api, apiMiddleware, apiReducer} from '@rtkServices/index';
 import {userReducer} from './UserManager';
 import { themeReducer } from './ThemeManger';
+import {jobOfferReducer} from './JobOfferManager';
 
 const logger = createLogger({
   duration: true,
@@ -23,7 +24,9 @@ const logger = createLogger({
 const rootReducer = combineReducers({
   [api.reducerPath]: apiReducer,
   user: userReducer,
-  theme: themeReducer
+  theme: themeReducer,
+  // Not in the persist whitelist: an offer must never survive an app restart.
+  jobOffer: jobOfferReducer,
 });
 
 const persistConfig = {

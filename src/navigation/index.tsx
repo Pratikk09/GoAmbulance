@@ -6,10 +6,16 @@ import SplashScreen from '@container/SplashScreen';
 import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
 import { navigationRef } from './utils';
+import IncomingJobModal from '@components/IncomingJobModal/IncomingJobModal';
+import {useJobAlerts} from '@hooks/useJobAlerts';
+import {useDriverSession} from '@hooks/useDriverSession';
 
 const AppStack = createNativeStackNavigator<AppStackParamList>();
 
 export default function Application() {
+  useJobAlerts();
+  useDriverSession();
+
   return (
     <NavigationContainer ref={navigationRef}>
       <AppStack.Navigator>
@@ -29,6 +35,8 @@ export default function Application() {
           options={{headerShown: false}}
         />
       </AppStack.Navigator>
+      {/* Shown over any screen when a job offer comes in. */}
+      <IncomingJobModal />
     </NavigationContainer>
   );
 }
