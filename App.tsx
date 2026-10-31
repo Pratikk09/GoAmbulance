@@ -21,7 +21,6 @@ function App() {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <SafeAreaProvider>
-            
             <ActionSheetProvider>
               <>
                 <StatusBar barStyle="dark-content" />
